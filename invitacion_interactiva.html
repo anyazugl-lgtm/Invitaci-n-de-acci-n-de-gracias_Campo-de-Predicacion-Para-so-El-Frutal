@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reunión de Acción de Gracias Dios - Campo Paraíso El Frutal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #1a261c;
+            color: #2b382d;
+            overflow-x: hidden;
+        }
+        .font-sans-custom {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Custom scrollbar & smooth transitions */
+        .slide-transition {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+        }
+        .envelope-bg {
+            background-color: #223526;
+            background-image: radial-gradient(circle at center, #2a3e2e 0%, #172419 100%);
+        }
+        .parchment-bg {
+            background-color: #f7f3e9;
+            background-image: linear-gradient(to bottom, #f9f6ee, #f3ede0);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-0 md:p-6">
+
+    <div id="app-container" class="w-full max-w-md md:max-w-xl lg:max-w-2xl min-h-screen md:min-h-[850px] bg-[#f7f3e9] shadow-2xl relative flex flex-col justify-between overflow-hidden md:rounded-2xl border-4 border-[#2b382d]">
+
+        <!-- VIEW 1: ENVELOPE (Initial State) -->
+        <div id="view-envelope" class="absolute inset-0 envelope-bg flex flex-col justify-between p-6 z-20 transition-opacity duration-700">
+            <!-- Top decorative foliage illustration via SVG/CSS representation -->
+            <div class="w-full flex justify-center pt-4 opacity-90">
+                <svg width="180" height="70" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#c1d3bc]">
+                    <path d="M100 70C100 70 80 40 40 40C20 40 10 50 10 50C10 50 30 20 70 20C90 20 100 30 100 30C100 30 110 20 130 20C170 20 190 50 190 50C190 50 180 40 160 40C120 40 100 70 100 70Z" fill="currentColor" opacity="0.2"/>
+                    <path d="M100 65C100 65 85 35 50 35C30 35 20 45 20 45C20 45 35 15 75 15C95 15 100 25 100 25C100 25 105 15 125 15C165 15 180 45 180 45C180 45 170 35 150 35C115 35 100 65 100 65Z" fill="currentColor" opacity="0.4"/>
+                    <!-- Small white flowers -->
+                    <circle cx="60" cy="30" r="4" fill="#ffffff"/>
+                    <circle cx="140" cy="30" r="4" fill="#ffffff"/>
+                    <circle cx="100" cy="20" r="5" fill="#ffffff"/>
+                </svg>
+            </div>
+
+            <!-- Envelope Graphic Illustration Center -->
+            <div class="flex-1 flex flex-col items-center justify-center my-auto relative">
+                <!-- Envelope Body -->
+                <div class="w-full max-w-[340px] bg-[#1e2f22] rounded-lg shadow-xl border border-[#344d39] relative overflow-hidden p-6 flex flex-col items-center">
+                    <!-- Envelope Flaps (CSS Triangle overlay) -->
+                    <div class="absolute top-0 left-0 w-full h-28 bg-[#17251a] opacity-80" style="clip-path: polygon(0 0, 50% 70%, 100% 0);"></div>
+                    <div class="absolute top-0 left-0 w-full h-32 bg-[#223627] opacity-60" style="clip-path: polygon(0 0, 50% 55%, 100% 0);"></div>
+
+                    <!-- Seal Button -->
+                    <button onclick="openInvitation()" class="mt-16 z-30 w-36 h-36 rounded-full bg-[#f4f0e6] border-4 border-[#d5ccb8] shadow-2xl flex flex-col items-center justify-center text-center p-3 transform transition hover:scale-105 active:scale-95 cursor-pointer group">
+                        <span class="text-[11px] font-sans-custom tracking-[0.2em] font-bold text-[#1c2a1e] uppercase">ABRIR</span>
+                        <span class="text-sm font-sans-custom tracking-[0.15em] font-bold text-[#1c2a1e] uppercase">INVITACIÓN</span>
+                        <div class="mt-1 text-[#2d4632] group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-seedling text-xs"></i>
+                        </div>
+                    </button>
+
+                    <!-- De / Para box inside lower envelope -->
+                    <div class="w-full mt-10 bg-[#162218] border border-[#2d4432] rounded p-3 flex justify-between text-center text-[#e2dcd0]">
+                        <div class="w-1/2 border-r border-[#2d4432] pr-2">
+                            <p class="text-[10px] font-sans-custom tracking-widest text-[#a3b3a6]">DE:</p>
+                            <p class="text-sm font-semibold mt-1 leading-tight text-[#f0ece1]">Campo de Predicación<br>Paraíso El Frutal</p>
+                        </div>
+                        <div class="w-1/2 pl-2 flex flex-col justify-center">
+                            <p class="text-[10px] font-sans-custom tracking-widest text-[#a3b3a6]">PARA:</p>
+                            <p class="text-sm font-semibold mt-1 leading-tight text-[#f0ece1]">Invitado especial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom foliage -->
+            <div class="w-full flex justify-center pb-2">
+                <div class="flex items-center space-x-2 text-[#8fa88c] text-xs font-sans-custom tracking-widest uppercase">
+                    <span>Toque el sello para abrir</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- VIEW 2: CAROUSEL CONTAINER (Hidden initially) -->
+        <div id="view-carousel" class="flex-1 flex flex-col justify-between opacity-0 pointer-events-none transition-opacity duration-700 relative z-10">
+            
+            <!-- Slides wrapper -->
+            <div class="flex-1 relative overflow-hidden flex items-center justify-center">
+                
+                <!-- SLIDE 1 (Center in original image: Psalm 75:1) -->
+                <div class="carousel-slide absolute inset-0 p-8 md:p-12 flex flex-col justify-between items-center text-center transition-all duration-500 transform translate-x-0 opacity-100" data-index="0">
+                    <!-- Top Foliage -->
+                    <div class="w-full flex justify-center pt-2">
+                        <svg width="100" height="40" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#3b523f]">
+                            <path d="M60 40C60 40 50 20 25 20C12 20 6 25 6 25C6 25 18 10 42 10C54 10 60 15 60 15C60 15 66 10 78 10C102 10 114 25 114 25C114 25 108 20 95 20C70 20 60 40 60 40Z" fill="currentColor" opacity="0.8"/>
+                        </svg>
+                    </div>
+
+                    <!-- Quote Content -->
+                    <div class="my-auto max-w-md px-4">
+                        <h2 class="text-3xl md:text-4xl italic font-bold text-[#1e2e20] leading-snug">
+                            Gracias te damos, oh Dios,<br>gracias te damos,
+                        </h2>
+                        <p class="text-xl md:text-2xl italic text-[#2d4432] mt-6 leading-relaxed">
+                            Pues cercano está tu nombre;<br>Los hombres cuentan tus maravillas.
+                        </p>
+                        <p class="text-lg font-semibold text-[#3b523f] mt-6 tracking-wide">
+                            - Salmos 75:1 -
+                        </p>
+                    </div>
+
+                    <!-- Decorative Branch Middle/Bottom -->
+                    <div class="pb-6">
+                        <svg width="60" height="30" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#5a735c] mx-auto">
+                            <path d="M50 45C50 45 40 20 20 20C10 20 5 25 5 25C5 25 15 10 35 10C45 10 50 15 50 15C50 15 55 10 65 10C85 10 95 25 95 25C95 25 90 20 80 20C60 20 50 45 50 45Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                </div>
+
+
+                <!-- SLIDE 2 (Right in original image: Details & Countdown) -->
+                <div class="carousel-slide absolute inset-0 p-6 md:p-10 flex flex-col justify-between items-center text-center transition-all duration-500 transform translate-x-full opacity-0 overflow-y-auto" data-index="1">
+                    
+                    <!-- Top Foliage -->
+                    <div class="w-full flex justify-center pt-1">
+                        <svg width="80" height="30" viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#3b523f]">
+                            <path d="M60 40C60 40 50 20 25 20C12 20 6 25 6 25C6 25 18 10 42 10C54 10 60 15 60 15C60 15 66 10 78 10C102 10 114 25 114 25C114 25 108 20 95 20C70 20 60 40 60 40Z" fill="currentColor" opacity="0.8"/>
+                        </svg>
+                    </div>
+
+                    <!-- Main Invitation Paragraph -->
+                    <div class="max-w-lg mx-auto my-2 text-justify md:text-center text-sm md:text-base leading-relaxed text-[#2b382d]">
+                        Por este medio, los hermanos que nos reunimos en el <strong>Campo Paraíso El Frutal</strong>, tenemos el agrado de extenderles una cordial invitación a nuestra <strong>Reunión de Acción de Gracias Dios</strong>, con el propósito de agradecerle por habernos concedido Su ayuda y acompañamiento durante estos 4 años, así como por la bendición de haber adquirido nuestro terreno. Dicha reunión se llevara a efecto Dios mediante.
+                    </div>
+
+                    <!-- Info Grid Box (Horario, Fecha, Dirección) -->
+                    <div class="w-full max-w-md bg-[#eaddc5] border border-[#d2c3aa] rounded-lg my-3 p-3 grid grid-cols-3 gap-2 shadow-sm">
+                        <!-- Horario -->
+                        <div class="flex flex-col items-center justify-center text-center border-r border-[#d2c3aa] pr-1">
+                            <div class="w-8 h-8 rounded-full bg-[#f4f0e6] flex items-center justify-center text-[#3b523f] mb-1">
+                                <i class="fa-regular fa-clock text-xs"></i>
+                            </div>
+                            <span class="text-[11px] font-sans-custom uppercase font-bold text-[#3b523f]">Horario:</span>
+                            <span class="text-[11px] font-sans-custom text-[#2b382d] mt-0.5 leading-tight">10:00 a.m y<br>2:00 p.m D.M</span>
+                        </div>
+                        <!-- Fecha -->
+                        <div class="flex flex-col items-center justify-center text-center border-r border-[#d2c3aa] px-1">
+                            <div class="w-8 h-8 rounded-full bg-[#f4f0e6] flex items-center justify-center text-[#3b523f] mb-1">
+                                <i class="fa-regular fa-calendar text-xs"></i>
+                            </div>
+                            <span class="text-[11px] font-sans-custom uppercase font-bold text-[#3b523f]">Fecha:</span>
+                            <span class="text-[11px] font-sans-custom text-[#2b382d] mt-0.5 leading-tight">17 octubre<br>de 2026</span>
+                        </div>
+                        <!-- Dirección -->
+                        <div class="flex flex-col items-center justify-center text-center pl-1">
+                            <div class="w-8 h-8 rounded-full bg-[#f4f0e6] flex items-center justify-center text-[#3b523f] mb-1">
+                                <i class="fa-solid fa-location-dot text-xs"></i>
+                            </div>
+                            <span class="text-[11px] font-sans-custom uppercase font-bold text-[#3b523f]">Dirección:</span>
+                            <span class="text-[10px] font-sans-custom text-[#2b382d] mt-0.5 leading-tight">2da. Avenida 7-02, Colonia El Paraíso, El Frutal, Villa Nueva (Campo de Predicación)</span>
+                        </div>
+                    </div>
+
+                    <!-- Cuenta Regresiva (Countdown Timer Added Exactly as requested) -->
+                    <div class="w-full max-w-sm bg-[#2b382d] text-[#f7f3e9] rounded-lg p-2.5 my-2 shadow-md">
+                        <p class="text-[11px] font-sans-custom uppercase tracking-widest text-[#a3b3a6] mb-1 text-center font-semibold">Faltan para el gran día:</p>
+                        <div id="countdown-timer" class="grid grid-cols-4 gap-1 text-center font-sans-custom">
+                            <div class="bg-[#1f2920] p-1 rounded">
+                                <span id="days" class="text-base font-bold text-[#f7f3e9]">00</span>
+                                <span class="block text-[9px] uppercase tracking-wider text-[#9db29d]">Días</span>
+                            </div>
+                            <div class="bg-[#1f2920] p-1 rounded">
+                                <span id="hours" class="text-base font-bold text-[#f7f3e9]">00</span>
+                                <span class="block text-[9px] uppercase tracking-wider text-[#9db29d]">Horas</span>
+                            </div>
+                            <div class="bg-[#1f2920] p-1 rounded">
+                                <span id="minutes" class="text-base font-bold text-[#f7f3e9]">00</span>
+                                <span class="block text-[9px] uppercase tracking-wider text-[#9db29d]">Min</span>
+                            </div>
+                            <div class="bg-[#1f2920] p-1 rounded">
+                                <span id="seconds" class="text-base font-bold text-[#f7f3e9]">00</span>
+                                <span class="block text-[9px] uppercase tracking-wider text-[#9db29d]">Seg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cordialmente invitados -->
+                    <div class="mt-1">
+                        <h3 class="text-xl italic font-bold text-[#2b382d]">Cordialmente invitados.</h3>
+                        <div class="my-1">
+                            <svg width="40" height="15" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#5a735c] mx-auto">
+                                <path d="M50 45C50 45 40 20 20 20C10 20 5 25 5 25C5 25 15 10 35 10C45 10 50 15 50 15C50 15 55 10 65 10C85 10 95 25 95 25C95 25 90 20 80 20C60 20 50 45 50 45Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <p class="text-xs md:text-sm italic text-[#2b382d] leading-snug px-2">
+                            Y nos mandó que predicásemos al pueblo, y testificásemos que él es el Dios que ha puesto por Juez de vivos y muertos.
+                        </p>
+                        <p class="text-xs font-semibold text-[#3b523f] mt-1 tracking-wide">
+                            - Hechos 10:42 -
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Navigation Footer (Arrows and Pagination Dots) -->
+            <div class="w-full bg-[#f0eae1] py-4 px-6 flex items-center justify-between border-t border-[#e2d8c5] relative z-30">
+                <!-- Previous Button -->
+                <button onclick="prevSlide()" id="prev-btn" class="w-10 h-10 rounded-full bg-[#f9f7f2] border border-[#d2c5b0] shadow flex items-center justify-center text-[#2b382d] hover:bg-[#e6dece] transition cursor-pointer">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+
+                <!-- Indicators -->
+                <div class="flex items-center space-x-2">
+                    <span class="dot w-2.5 h-2.5 rounded-full bg-[#2b382d] transition-all duration-300 cursor-pointer" onclick="goToSlide(0)"></span>
+                    <span class="dot w-2.5 h-2.5 rounded-full bg-[#b8ad9b] transition-all duration-300 cursor-pointer" onclick="goToSlide(1)"></span>
+                </div>
+
+                <!-- Next Button -->
+                <button onclick="nextSlide()" id="next-btn" class="w-10 h-10 rounded-full bg-[#f9f7f2] border border-[#d2c5b0] shadow flex items-center justify-center text-[#2b382d] hover:bg-[#e6dece] transition cursor-pointer">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        // State management
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function openInvitation() {
+            const envelopeView = document.getElementById('view-envelope');
+            const carouselView = document.getElementById('view-carousel');
+
+            // Fade out envelope
+            envelopeView.style.opacity = '0';
+            setTimeout(() => {
+                envelopeView.style.display = 'none';
+                carouselView.classList.remove('opacity-0', 'pointer-events-none');
+            }, 500);
+        }
+
+        function updateCarousel() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.dot');
+
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.style.transform = 'translateX(0)';
+                    slide.style.opacity = '1';
+                    slide.style.pointerEvents = 'auto';
+                } else if (index < currentSlide) {
+                    slide.style.transform = 'translateX(-100%)';
+                    slide.style.opacity = '0';
+                    slide.style.pointerEvents = 'none';
+                } else {
+                    slide.style.transform = 'translateX(100%)';
+                    slide.style.opacity = '0';
+                    slide.style.pointerEvents = 'none';
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.remove('bg-[#b8ad9b]');
+                    dot.classList.add('bg-[#2b382d]', 'w-4');
+                } else {
+                    dot.classList.remove('bg-[#2b382d]', 'w-4');
+                    dot.classList.add('bg-[#b8ad9b]');
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateCarousel();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateCarousel();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Countdown Timer Logic (Target: 17 October 2026)
+        const eventDate = new Date('October 17, 2026 10:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown-timer').innerHTML = "<div class='col-span-4 text-center text-xs font-bold py-1'>¡El evento ha comenzado!</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        // Initialize timer and run every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
